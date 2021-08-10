@@ -37,6 +37,11 @@
 #include "sensirion_config.h"
 #include "sensirion_i2c_hal.h"
 
+typedef enum {
+    STATUS_FAIL = -EIO,
+    STATUS_OK   = 0,
+} status_t;
+
 /* I2C device. */
 static struct device* i2c_dev;
 
@@ -72,6 +77,13 @@ int16_t sensirion_i2c_hal_select_bus(uint8_t bus_idx) {
 void sensirion_i2c_hal_init(void) {
     /* Device (specified by sps30_i2c_dev) is already initialized by the Zephyr
      * boot-up process. Nothing to be done here. */
+}
+
+/**
+ * Initialize driver by setting device initialized in 3rd party
+ */
+void sensirion_i2c_hal_set_dev(void *dev) {
+    i2c_dev = dev;
 }
 
 /**

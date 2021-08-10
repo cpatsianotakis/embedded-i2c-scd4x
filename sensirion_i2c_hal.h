@@ -57,6 +57,11 @@ int16_t sensirion_i2c_hal_select_bus(uint8_t bus_idx);
 void sensirion_i2c_hal_init(void);
 
 /**
+ * Initialize driver by setting device initialized in 3rd party
+ */
+void sensirion_i2c_hal_set_dev(void *dev);
+
+/**
  * Release all resources initialized by sensirion_i2c_hal_init().
  */
 void sensirion_i2c_hal_free(void);

@@ -43,32 +43,7 @@ typedef enum {
 } status_t;
 
 /* I2C device. */
-static struct device* i2c_dev;
-
-/**
- * Select the current i2c bus by index.
- * All following i2c operations will be directed at that bus.
- *
- * @param bus_idx   Bus index to select
- * @returns         0 on success, an error code otherwise
- */
-int16_t sensirion_i2c_hal_select_bus(uint8_t bus_idx) {
-    char bus_name[6] = "I2C_0";
-
-    if (bus_idx > 9) {
-        /* Invalid bus index */
-        return STATUS_FAIL;
-    }
-
-    bus_name[4] = bus_idx + '0';
-    i2c_dev = device_get_binding(bus_name);
-    if (i2c_dev == NULL) {
-        /* No valid device found */
-        return STATUS_FAIL;
-    }
-
-    return STATUS_OK;
-}
+struct device *i2c_dev;
 
 /**
  * Initialize all hard- and software components that are needed for the I2C
